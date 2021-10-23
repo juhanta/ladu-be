@@ -3,13 +3,15 @@ const db = require("../db")
 const partService = {};
 
 
-partService.getPartById =  async (companyId,partId) => {
-    const part = await db.query("SELECT * FROM whse.part WHERE CompanyID = ? AND PartNum = ?", [companyId, partId])
+partService.getPartByPartNum =  async (companyId,partNum) => {
+    const part = await db.query("SELECT * FROM whse.part WHERE CompanyID = ? AND PartNum = ? AND deleted = 0", [companyId, partNum])
+    console.log(part)
     return part;
+    
   };
 
-partService.addPart =  async (companyId,partId) => {
-    const part = await db.query("SELECT * FROM whse.part WHERE CompanyID = ? AND PartNum = ?", [companyId, partId])
+partService.addPart =  async (newPart) => {
+    const part = await db.query("INSERT INTO part SET ? ", [newPart])
     return part;
   };
 

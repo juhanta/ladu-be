@@ -7,8 +7,8 @@ const router = express.Router();
 router
   
  
-  .get('/part', partController.getPartById)
-  
+  .get('/part', partController.getPartByPartNum)
+  .post('/part', partController.addPart)
   
 
 module.exports = router;
