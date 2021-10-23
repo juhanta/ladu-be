@@ -60,6 +60,7 @@
     `warehouseID=[integer]`
 
     `qty=[integer]`
+    
    **Optional:**     
     `lotID=[integer]`
 * **Success Response:**
