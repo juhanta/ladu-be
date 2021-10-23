@@ -53,6 +53,7 @@
    **Required:**
 * **Data Params**
    **Required:**
+   
     `companyID=[integer]`
      
     `partNum=[integer]`
@@ -60,7 +61,7 @@
     `warehouseID=[integer]`
 
     `qty=[integer]`
-    
+
    **Optional:**     
     `lotID=[integer]`
 * **Success Response:**
