@@ -1,9 +1,11 @@
 # warehouse app backend
+* test running in https://ladu.tammik.eu
 ## dependencies
 * npm install express 
 * npm install mysql2
 * npm install bcrypt
 * npm install jsonwebtoken 
+
 
 # Endpoints
 
