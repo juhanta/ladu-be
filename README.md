@@ -1,5 +1,5 @@
 # warehouse app backend
-* test running in https://ladu.tammik.eu
+* test app running in https://ladu.tammik.eu
 ## dependencies
 * npm install express 
 * npm install mysql2

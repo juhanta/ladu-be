@@ -8,6 +8,7 @@ router
   
  
   .get('/stock/:id', stockController.getStockByCompany)
+  .post('/stock', stockController.addStockToCompany)
   
   
 
