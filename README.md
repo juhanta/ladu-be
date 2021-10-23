@@ -45,7 +45,7 @@
 **Add Company stock**
 ----
   Adds stock to company warehouse* 
-  **URL**
+*  **URL**
   /stock/
 * **Method:**
   `POST`
@@ -53,19 +53,22 @@
    **Required:**
 * **Data Params**
    **Required:**
-     `companyID=[integer]`
-     `partNum=[integer]`
-     `warehouseID=[integer]`
-     `qty=[integer]`
+    `companyID=[integer]`
+     
+    `partNum=[integer]`
+
+    `warehouseID=[integer]`
+
+    `qty=[integer]`
    **Optional:**     
-     `lotID=[integer]`
+    `lotID=[integer]`
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** 
  
 * **Error Response:**
-
+----
 **Part**
 ----
   Returns json data about active part in specific company
