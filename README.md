@@ -20,6 +20,7 @@
    `id=[integer]`
 
 * **Data Params**
+
   None
 * **Success Response:**
 
@@ -35,23 +36,40 @@
             "Qty": 5,
             "LotNum": "1",
             "BestBeforeDt": "2021-11-10T22:00:00.000Z"
-        },
-        
-    ]}`
+        },]}`
  
 * **Error Response:**
-* **Sample Call:**
 
-  ```javascript
-    $.ajax({
-      url: "/users/1",
-      dataType: "json",
-      type : "GET",
-      success : function(r) {
-        console.log(r);
-      }
-    });
-  ```
 
+**Part**
+----
+  Returns json data about part in specific company
+* **URL**
+  /part/
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+    `partNum=[string]`
+ 
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** {"part": [
+        {
+            "ID": 2,
+            "partNum": "84",
+            "description": "Fexofenadine hydrochloride",
+            "companyID": 1,
+            "classID": 8,
+            "lotTracked": 1,
+            "deleted": 0,
+            "reminder": 12
+        }]}
+ 
+* **Error Response:**
 
 
