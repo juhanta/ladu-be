@@ -9,7 +9,7 @@
 
 # Endpoints
 
-**Company stock**
+**Get Company stock**
 ----
   Returns json data about all companys warehouses
 * **URL**
@@ -41,7 +41,30 @@
         },]}`
  
 * **Error Response:**
+----
+**Add Company stock**
+----
+  Adds stock to company warehouse* 
+  **URL**
+  /stock/
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+* **Data Params**
+   **Required:**
+     `companyID=[integer]`
+     `partNum=[integer]`
+     `warehouseID=[integer]`
+     `qty=[integer]`
+   **Optional:**     
+     `lotID=[integer]`
+* **Success Response:**
 
+  * **Code:** 200 <br />
+    **Content:** 
+ 
+* **Error Response:**
 
 **Part**
 ----
