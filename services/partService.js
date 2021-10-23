@@ -12,7 +12,12 @@ partService.getPartByPartNum =  async (companyId,partNum) => {
 
 partService.addPart =  async (newPart) => {
     const part = await db.query("INSERT INTO part SET ? ", [newPart])
-    return part;
+    return newPart;
+  };
+
+partService.changePart =  async (changedPart) => {
+    const part = await db.query("UPDATE part SET ? WHERE PartNum = ? AND companyID = ?", [changedPart, changedPart.partNum, changedPart.companyID])
+    return true;
   };
 
 module.exports = partService;

@@ -9,6 +9,7 @@ router
  
   .get('/part', partController.getPartByPartNum)
   .post('/part', partController.addPart)
+  .patch('/part/:partNum', partController.changePart)
   
 
 module.exports = router;

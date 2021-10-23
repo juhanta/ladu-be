@@ -37,7 +37,7 @@ partController.addPart = async (req, res) => {
             }
             const addPart = await partService.addPart(newPart);
             res.status(200).json({
-                newPart})
+                addPart})
             }
     }else{
         res.status(400).json({
@@ -47,6 +47,41 @@ partController.addPart = async (req, res) => {
     
 };
 
+partController.changePart = async (req, res) => {
+    const partNum = req.params.partNum
+    console.log(partNum)
+    const description = req.body.description
+    const companyID = req.body.companyID
+    const classID = req.body.classID
+    const lotTracked = req.body.lotTracked
+    const reminder = req.body.reminder
+    if (partNum && description && companyID && classID && lotTracked && reminder) {
+        const checkForPart = await partService.getPartByPartNum(companyID,partNum)
+        if(checkForPart.length === 0){
+            res.status(400).json({
+                error: 'Error. Sellist toodet pole'
+            })
+        }
+        else{
+            const changedPart = {
+            partNum: partNum,
+            description: description,
+            companyID: companyID,
+            classID: classID,
+            lotTracked: lotTracked,
+            reminder: reminder
+            }
+            const changePart = await partService.changePart(changedPart);
+            res.status(200).json({
+                status: 'Muudetud'})
+            }
+    }else{
+        res.status(400).json({
+            error: 'Kõik väljad on kohustuslikud!'
+        })
+    }
+    
+};
 
 
 module.exports = partController;
