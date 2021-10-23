@@ -1,5 +1,5 @@
-# ladu
-# Nõuded
+# warehouse app backend
+## dependencies
 * npm install express 
 * npm install mysql2
 * npm install bcrypt
@@ -43,7 +43,7 @@
 
 **Part**
 ----
-  Returns json data about part in specific company
+  Returns json data about active part in specific company
 * **URL**
   /part/
 * **Method:**
