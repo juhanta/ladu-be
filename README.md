@@ -5,6 +5,15 @@
 * npm install mysql2
 * npm install bcrypt
 * npm install jsonwebtoken 
+* npm install nodemailer 
+* npm install node-cron
+
+
+## Email notifications
+Sends email when current date <= PartLot Expires Date - Part Reminder Days
+
+To users that have notifications set up for that company.  
+
 
 
 # Endpoints
@@ -53,7 +62,7 @@
    **Required:**
 * **Data Params**
    **Required:**
-   
+
     `companyID=[integer]`
      
     `partNum=[integer]`
