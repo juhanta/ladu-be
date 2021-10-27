@@ -111,6 +111,7 @@ To users that have notifications set up for that company.
 * **Error Response:**
 ----
 **Part**
+
 ----
   Returns json data about active part in specific company
 * **URL**
@@ -141,4 +142,27 @@ To users that have notifications set up for that company.
  
 * **Error Response:**
 
+**Company**
+----
+  Returns companies where user has access
+* **URL**
+  /company/id
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
 
+   `userID=[id]`
+* **Data Params**
+    None
+    
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** {"company": [
+        {
+            "ID": 1,
+            "Name": "C1"
+        },]}
+ 
+* **Error Response:**
