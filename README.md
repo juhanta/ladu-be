@@ -7,6 +7,14 @@
 * npm install jsonwebtoken 
 * npm install nodemailer 
 * npm install node-cron
+## database
+Database dump in database.txt
+
+## setup
+set up database 
+change config.sample.js with your configuration and remove 'sample' 
+install dependencies
+npm start 
 
 
 ## Email notifications
