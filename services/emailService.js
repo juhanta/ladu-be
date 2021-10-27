@@ -1,7 +1,7 @@
 
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
-const { emailHost, port, emailUser, emailPassword } = require('../config');
+const { emailHost, port, emailUser, emailPassword, smtpPort } = require('../config');
 const db = require("../db")
 
 const emailService = {};
@@ -14,7 +14,7 @@ cron.schedule('0 00 08 * * *', async () => {
         console.log(data)
         var transporter = nodemailer.createTransport({
             host: emailHost,
-            port: port,
+            port: smtpPort,
             secure: true, // upgrade later with STARTTLS
             auth: {
               user: emailUser,

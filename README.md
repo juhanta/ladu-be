@@ -28,7 +28,7 @@ To users that have notifications set up for that company.
 *  **URL Params**
    **Required:**
 
-   `id=[integer]`
+   `companyid=[integer]`
 
 * **Data Params**
 
@@ -39,14 +39,44 @@ To users that have notifications set up for that company.
     **Content:** `{
     "stock": [
         {
-            "ID": 3,
-            "Company Name": "C1",
+            "companyID": 1,
+            "partID": 61,
+            "partNum": "GL1",
+            "partDescription": "Glükomeetri testribad",
+            "partClass": "Varia",
             "WareHouseCode": "W001",
-            "PartNum": "84",
-            "Description": "Fexofenadine hydrochloride",
-            "Qty": 5,
-            "LotNum": "1",
-            "BestBeforeDt": "2021-11-10T22:00:00.000Z"
+            "qty": "5"
+        },,]}`
+ 
+* **Error Response:**
+----
+**Get Part with lot info**
+----
+  Returns json data with part lot info in current company/warehouse
+* **URL**
+  /stock
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+
+* **Data Params**
+    `companyID=[integer]`
+    `partID=[integer]`
+    `warehouseID=[integer]`
+  None
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{
+    "stock": [
+        {
+            "companyID": 1,
+            "warehouseCode": "W002",
+            "partNum": "ML2S",
+            "lotnum": "5",
+            "BestBeforeDt": "2021-10-30T21:00:00.000Z",
+            "qty": 7
         },]}`
  
 * **Error Response:**

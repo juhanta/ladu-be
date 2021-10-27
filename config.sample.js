@@ -7,7 +7,11 @@ const config = {
         user:'',
         password:'',
         database:'',
-    }
+    },
+    emailHost: "smtp server",
+    smtpPort:465, //smtp port
+    emailUser:"username", //smtp user
+    emailPassword:"password" //smtp password
 
 };
 

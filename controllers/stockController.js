@@ -11,6 +11,19 @@ stockController.getStockByCompany = async (req, res) => {
         stock})
 };
 
+
+stockController.getStockByPart = async (req, res) => {
+    const companyID = req.body.companyID
+    const partID = req.body.partID
+    const warehouseID = req.body.warehouseID
+    console.log(companyID, partID, warehouseID)
+    const stock = await stockService.getStockByPart(companyID, partID, warehouseID);
+    res.status(200).json({
+        stock})
+};
+
+
+
 stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
