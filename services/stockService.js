@@ -15,6 +15,19 @@ stockService.getStockByPart =  async (companyID, partID, warehouseID) => {
     return stock;
   };
 
+stockService.getStockByPartLot =  async (companyID, partID, warehouseID,lotID) => {
+    if (lotID == null) {
+      const stock = await db.query('SELECT * FROM stock WHERE companyID = ? AND partID = ? AND warehouseID = ? AND lotID IS NULL', [companyID, partID, warehouseID])
+      return stock
+    }
+    else{
+      const stock = await db.query('SELECT * FROM stock WHERE companyID = ? AND partID = ? AND warehouseID = ? AND lotID = ?', [companyID, partID, warehouseID,lotID])
+
+      return stock;
+    }
+    
+  };
+
 stockService.addStock =  async (newStock) => {
     const stock = await db.query("INSERT INTO stock SET ? ", [newStock])
     return stock;

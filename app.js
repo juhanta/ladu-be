@@ -3,6 +3,7 @@ const express = require('express');
 const userRoutes = require('./routes/userRoutes')
 const stockRoutes = require('./routes/stockRoutes')
 const partRoutes = require('./routes/partRoutes')
+const transactionRoutes = require('./routes/transactionRoutes')
 const companyRoutes = require('./routes/companyRoutes')
 const emailService = require('./services/emailService')
 const app = express();
@@ -13,6 +14,7 @@ app.use(userRoutes)
 app.use(stockRoutes)
 app.use(partRoutes);
 app.use(companyRoutes)
+app.use(transactionRoutes)
 
 app.get('/', (req, res) => {
     res.status(200).json({

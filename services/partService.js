@@ -9,6 +9,12 @@ partService.getPartByPartNum =  async (companyID,partNum) => {
     
   };
 
+  partService.getPartByPartID =  async (companyID,partID) => {
+    const part = await db.query("SELECT * FROM part WHERE companyID = ? AND ID = ? AND deleted = 0", [companyID, partID])
+    return part;
+    
+  };
+
 partService.addPart =  async (newPart) => {
     const part = await db.query("INSERT INTO part SET ? ", [newPart])
     return newPart;

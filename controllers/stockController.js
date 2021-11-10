@@ -23,7 +23,6 @@ stockController.getStockByPart = async (req, res) => {
 };
 
 
-
 stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
