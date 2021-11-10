@@ -177,3 +177,34 @@ To users that have notifications set up for that company.
         },]}
  
 * **Error Response:**
+
+**Transaction**
+----
+  Move stock to client or inv adjustment. 
+* **URL**
+  /transaction
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+
+    None
+* **Data Params**
+    
+    `companyID=[id]`
+    `warehouseID=[id]`
+    `partID=[id]`
+    `lotID=[id]`
+    `qty=[id]`
+    `comment=[string]`
+    `userID=[id]`
+    `transactionID=[id]`
+    
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** {
+    "addTransaction": true
+}
+ 
+* **Error Response:**
