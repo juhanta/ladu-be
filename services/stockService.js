@@ -29,6 +29,7 @@ stockService.getStockByPartLot =  async (companyID, partID, warehouseID,lotID) =
   };
 
 stockService.addStock =  async (newStock) => {
+  console.log(newStock)
     const stock = await db.query("INSERT INTO stock SET ? ", [newStock])
     return stock;
   };

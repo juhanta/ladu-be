@@ -45,7 +45,7 @@ transactionController.newTransaction = async (req, res) => {
                 addTransaction})
             }else{
                 res.status(400).json({
-                    error: 'midagi puudu'
+                    error: 'Kõik väljad peavad olema täidetud'
                 })
             }
         }

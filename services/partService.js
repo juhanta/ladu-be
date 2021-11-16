@@ -26,7 +26,9 @@ partService.changePart =  async (changedPart) => {
   };
 
 partService.getPartID = async (companyID, partNum) =>{
+  console.log(companyID, partNum)
     const partID = await db.query("SELECT ID FROM part WHERE partNum = ? AND companyID = ? ", [partNum, companyID] )
+    
     return partID[0].ID;
   };
 

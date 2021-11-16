@@ -5,6 +5,7 @@ const stockRoutes = require('./routes/stockRoutes')
 const partRoutes = require('./routes/partRoutes')
 const transactionRoutes = require('./routes/transactionRoutes')
 const companyRoutes = require('./routes/companyRoutes')
+const partClassRoutes = require('./routes/partClassRoutes')
 const emailService = require('./services/emailService')
 const app = express();
 var docs = require("express-mongoose-docs");
@@ -15,6 +16,7 @@ app.use(stockRoutes)
 app.use(partRoutes);
 app.use(companyRoutes)
 app.use(transactionRoutes)
+app.use(partClassRoutes)
 
 app.get('/', (req, res) => {
     res.status(200).json({
