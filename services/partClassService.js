@@ -11,7 +11,7 @@ partClassService.getPartClass =  async (companyID) => {
 
 partClassService.addPartClass =  async (companyID,description) => {
     const partClass = await db.query("INSERT INTO partclass SET companyID = ?, description = ?", [companyID,description])
-    return partClass;
+    return true;
     
   };
 

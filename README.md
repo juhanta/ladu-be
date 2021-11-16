@@ -28,6 +28,53 @@ To users that have notifications set up for that company.
 
 
 # Endpoints
+**PartClass**
+----
+  Returns json data about active part in specific company
+* **URL**
+  /partclass/
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+ 
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** {
+    "partClass": [
+        {
+            "ID": 11,
+            "description": "Süstlad"
+        },
+    }
+ 
+* **Error Response:**
+**PartClass**
+----
+## Add Part Class to Company
+* **URL**
+  /partclass/
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+    `description=[string]`
+ 
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** {
+    "partClass": true
+}
+ 
+* **Error Response:**
 
 **Get Company stock**
 ----
@@ -151,6 +198,30 @@ To users that have notifications set up for that company.
             "reminder": 12
         }]}
  
+* **Error Response:**
+----
+**Part**
+----
+  Add part to Company
+* **URL**
+  /part/
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+    `partNum=[string]`
+    `description=[string]`
+    `classID=[id]`
+    `lotTracked=[boolean]`
+    `reminder=[int]`
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+
 * **Error Response:**
 
 **Company**

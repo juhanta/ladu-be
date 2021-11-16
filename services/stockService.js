@@ -10,7 +10,7 @@ stockService.getStockByCompany =  async (company) => {
 
 
 stockService.getStockByPart =  async (companyID, partID, warehouseID) => {
-    const stock = await db.query('SELECT stock.companyID, warehouse.warehouseCode, part.partNum, partlot.lotnum, partlot.BestBeforeDt, stock.qty FROM whse.stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ? AND stock.warehouseID = ?', [companyID, partID, warehouseID])
+    const stock = await db.query('SELECT stock.companyID, warehouse.warehouseCode, part.partNum, partlot.lotnum, partlot.BestBeforeDt, stock.qty FROM stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ? AND stock.warehouseID = ?', [companyID, partID, warehouseID])
 
     return stock;
   };
