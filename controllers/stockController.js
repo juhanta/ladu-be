@@ -26,10 +26,10 @@ stockController.getStockByPart = async (req, res) => {
 stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
-    const partNum = req.body.partNum
+    const partID = req.body.partNum
     let lotID = req.body.lotID
     const qty = req.body.qty
-    const partID = await  partService.getPartID(companyID, partNum)
+    
     console.log(partID)
     const lotRequired = await partService.getPartByPartNum(companyID,partNum)
     if (lotRequired[0].lotTracked === 1 && !lotID) {

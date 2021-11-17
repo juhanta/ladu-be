@@ -17,7 +17,8 @@ partService.getPartByPartNum =  async (companyID,partNum) => {
 
 partService.addPart =  async (newPart) => {
     const part = await db.query("INSERT INTO part SET ? ", [newPart])
-    return newPart;
+    const addedPart = await db.query("SELECT * FROM part WHERE id = LAST_INSERT_ID();")
+    return addedPart;
   };
 
 partService.changePart =  async (changedPart) => {
