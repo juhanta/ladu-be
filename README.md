@@ -139,6 +139,39 @@ To users that have notifications set up for that company.
  
 * **Error Response:**
 ----
+
+----
+**Get Part with lot info**
+----
+  Returns json data with part lot info in current company
+* **URL**
+  /stock/part/:partID
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+  `partID=[integer]`
+* **Data Params**
+    `companyID=[integer]`
+    
+  None
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{
+    "stock": [
+        {
+            "companyID": 1,
+            "warehouseCode": "W002",
+            "partNum": "ML2S",
+            "lotnum": "2",
+            "BestBeforeDt": "2021-12-10T22:00:00.000Z",
+            "qty": 4
+        },]}`
+ 
+* **Error Response:**
+----
+
 **Add Company stock**
 ----
   Adds stock to company warehouse* 

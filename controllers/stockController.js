@@ -16,11 +16,47 @@ stockController.getStockByPart = async (req, res) => {
     const companyID = req.body.companyID
     const partID = req.body.partID
     const warehouseID = req.body.warehouseID
+    if (!companyID){
+        res.status(400).json({
+            error: 'Company ID puudu'
+        })
+    }
+    if (!partID){
+        res.status(400).json({
+            error: 'PartID puudu'
+        })
+    }
+    if (!warehouseID){
+        res.status(400).json({
+            error: 'warehouseID puudu'
+        })
+    }
+    
     console.log(companyID, partID, warehouseID)
     const stock = await stockService.getStockByPart(companyID, partID, warehouseID);
     res.status(200).json({
         stock})
 };
+
+stockController.getStockWithAllLots = async (req, res) => {
+    const companyID = req.body.companyID
+    const partID = req.params.partID
+    if (!companyID){
+        res.status(400).json({
+            error: 'Company ID puudu'
+        })
+    }
+    if (!partID){
+        res.status(400).json({
+            error: 'PartID puudu'
+        })
+    }
+    
+    const stock = await stockService.getStockWithAllLots(companyID, partID);
+    res.status(200).json({
+        stock})
+};
+
 
 
 stockController.addStockToCompany = async (req, res) => {
