@@ -9,6 +9,12 @@ partService.getPartByPartNum =  async (companyID,partNum) => {
     
   };
 
+  partService.getPartsByCompany =  async (companyID) => {
+    const partClass = await db.query("SELECT * FROM part WHERE companyID = ? AND deleted = 0", [companyID])
+    return partClass;
+    
+  };
+
   partService.getPartByPartID =  async (companyID,partID) => {
     const part = await db.query("SELECT * FROM part WHERE companyID = ? AND ID = ? AND deleted = 0", [companyID, partID])
     return part;

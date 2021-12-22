@@ -10,6 +10,15 @@ partClassController.getPartClass = async (req, res) => {
         partClass})
 };
 
+partClassController.getPartClassDetail = async (req, res) => {
+    const companyID = req.body.companyID
+    const partClassID = req.body.partClassID
+    const partClass = await partClassService.getPartClassDetail(companyID, partClassID);
+    res.status(200).json({
+        partClass})
+};
+
+
 
 partClassController.addPartClass = async (req, res) => {
     const companyID = req.body.companyID

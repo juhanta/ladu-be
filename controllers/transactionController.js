@@ -14,6 +14,11 @@ transactionController.newTransaction = async (req, res) => {
     const comment = req.body.comment
     const userID = req.body.userID
     const transactionID = req.body.transactionID
+    if (qty <= 0 ){
+        res.status(400).json({
+            error: 'Vigane kogus!'
+        })
+    }
     const lotRequired = await partService.getPartByPartID(companyID,partID)
     if (lotRequired[0].lotTracked === 1 && !lotID) {
         res.status(400).json({
@@ -26,7 +31,7 @@ transactionController.newTransaction = async (req, res) => {
     const isStock = await stockService.getStockByPartLot(companyID, partID, warehouseID,lotID)
     if (isStock.length > 0){
     if (isStock[0].qty >= qty){
-        if(companyID && warehouseID && partID && qty & userID & transactionID){
+        if(companyID && warehouseID && partID && qty && userID && transactionID){
             const newTransaction = {
                 partID : partID,
                 companyID: companyID,
@@ -62,6 +67,23 @@ transactionController.newTransaction = async (req, res) => {
     }
 
 };
+
+
+transactionController.getTransactionType = async (req, res) => {
+    const companyID = req.body.companyID
+    const transaction = await transactionService.getTransactionType(companyID);
+    res.status(200).json({
+        transaction})
+};
+
+
+transactionController.getCompanyTransactions = async (req, res) => {
+    const companyID = req.body.companyID
+    const transactions = await transactionService.getCompanyTransactions(companyID);
+    res.status(200).json({
+        transactions})
+};
+
 
 
 

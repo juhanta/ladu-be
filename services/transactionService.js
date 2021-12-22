@@ -10,6 +10,17 @@ transactionService.addTransaction =  async (newTransaction,isStock) => {
     return true;
   };
 
-  
+transactionService.getTransactionType =  async (companyID) => {
+    const transactionType = await db.query("SELECT * FROM transtype")
+    return transactionType;
+    
+  };
+
+
+transactionService.getCompanyTransactions =  async (companyID) => {
+    const transactions = await db.query("SELECT parttrans.ID, company.Name AS Company, warehouse.WareHouseCode, part.partNum, parttrans.qty, partlot.LotNum, parttrans.comment, user.email, transtype.Description FROM parttrans LEFt JOIN company on company.id = parttrans.CompanyID LEFT JOIN warehouse on warehouse.id = parttrans.WarehouseID LEFT JOIN part on part.id = parttrans.partID LEFT JOIN partlot on partlot.id = parttrans.lotID LEFT JOIN user on user.ID = parttrans.userID LEFT JOIN transtype on transtype.ID = parttrans.TransactionID WHERE parttrans.companyID = ?",companyID)
+    return transactions;
+    
+  };
 
 module.exports = transactionService

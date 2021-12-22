@@ -11,6 +11,13 @@ partController.getPartByPartNum = async (req, res) => {
         part})
 };
 
+partController.getPartsByCompany = async (req, res) => {
+    const companyID = req.params.id
+    const part = await partService.getPartsByCompany(companyID);
+    res.status(200).json({
+        part})
+};
+
 partController.addPart = async (req, res) => {
     const partNum = req.body.partNum
     const description = req.body.description

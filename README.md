@@ -279,3 +279,77 @@ To users that have notifications set up for that company.
 }
  
 * **Error Response:**
+
+**Transaction**
+----
+  Get all history transactions in company 
+* **URL**
+  /transaction
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+
+    None
+* **Data Params**
+    `companyID=[id]`
+    
+* **Success Response:**
+   **Code:** 200 <br />
+    **Content:** {
+    "transaction": [
+               {
+            "ID": 18,
+            "Company": "C1",
+            "WareHouseCode": "W001",
+            "partNum": "GL1",
+            "qty": 1,
+            "LotNum": "1",
+            "comment": "Kliendile 15721",
+            "email": "juhan.tammik@gmail.com",
+            "Description": "Inventory Adjustment"
+        },
+    ]
+}
+* **Error Response:**
+
+
+**Transaction Type**
+----
+  Get all transaction types in company
+* **URL**
+  /transaction
+* **Method:**
+  `GET`
+*  **URL Params**
+   **Required:**
+
+    None
+* **Data Params**
+    `companyID=[id]`
+    
+* **Success Response:**
+   **Code:** 200 <br />
+    **Content:** {
+    "transaction": [
+        {
+            "ID": 1,
+            "TransCode": "invAdj",
+            "Description": "Inventory Adjustment"
+        },
+        {
+            "ID": 2,
+            "TransCode": "toCustomer",
+            "Description": "Transaction to Customer"
+        },
+        {
+            "ID": 3,
+            "TransCode": "toWhse",
+            "Description": "Transaction to warehouse"
+        }
+    ]
+}
+* **Error Response:**
+  
+   
+    
