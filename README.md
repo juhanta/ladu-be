@@ -224,6 +224,35 @@ To users that have notifications set up for that company.
 
 * **Error Response:**
 
+----
+**Change Part**
+----
+  Change part
+* **URL**
+  /part/
+* **Method:**
+  `PATCH`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `partID=[integer]`
+    `companyId=[integer]`
+    `partID=[string]`
+    `description=[string]`
+    `classID=[id]`
+    `lotTracked=[boolean]`
+    `reminder=[int]`
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    {
+    "status": "Muudetud"
+}
+
+* **Error Response:**
+
 **Company**
 ----
   Returns companies where user has access
@@ -249,7 +278,7 @@ To users that have notifications set up for that company.
  
 * **Error Response:**
 
-**Transaction**
+**Add Transaction**
 ----
   Move stock to client or inv adjustment. 
 * **URL**
@@ -280,7 +309,7 @@ To users that have notifications set up for that company.
  
 * **Error Response:**
 
-**Transaction**
+**Get Transaction**
 ----
   Get all history transactions in company 
 * **URL**

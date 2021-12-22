@@ -27,8 +27,8 @@ partService.addPart =  async (newPart) => {
     return addedPart;
   };
 
-partService.changePart =  async (changedPart) => {
-    const part = await db.query("UPDATE part SET ? WHERE PartNum = ? AND companyID = ?", [changedPart, changedPart.partNum, changedPart.companyID])
+partService.changePart =  async (partID,changedPart) => {
+    const part = await db.query("UPDATE part SET ? WHERE ID = ? AND companyID = ?", [changedPart, partID, changedPart.companyID])
     return true;
   };
 
