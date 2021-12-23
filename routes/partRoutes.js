@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .get('/part', partController.getPartByPartNum)
+  .get('/part/:companyID/:partID', partController.getPartByPartNum)
   .post('/part', partController.addPart)
   .patch('/part/:partID', partController.changePart)
   .get('/part/:id',partController.getPartsByCompany)

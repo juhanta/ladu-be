@@ -4,7 +4,7 @@ const warehouseController = {};
 
 
 warehouseController.getWarehouse = async (req, res) => {
-    const companyID = req.body.companyID
+    const companyID = parseInt(req.params.id, 10);
     const warehouse = await warehouseService.getWarehouse(companyID);
     res.status(200).json({
         warehouse})

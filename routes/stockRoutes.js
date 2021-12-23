@@ -10,7 +10,7 @@ router
   .get('/stock/:id', stockController.getStockByCompany)
   .get('/stock', stockController.getStockByPart)
   .post('/stock', stockController.addStockToCompany)
-  .get('/stock/part/:partID', stockController.getStockWithAllLots)
+  .get('/stock/:companyID/:partID', stockController.getStockWithAllLots)
   
 
 module.exports = router;

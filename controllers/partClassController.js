@@ -4,7 +4,7 @@ const partClassController = {};
 
 
 partClassController.getPartClass = async (req, res) => {
-    const companyID = req.body.companyID
+    const companyID = parseInt(req.params.id, 10);
     const partClass = await partClassService.getPartClass(companyID);
     res.status(200).json({
         partClass})

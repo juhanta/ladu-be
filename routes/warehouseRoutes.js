@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .get('/warehouse', warehouseController.getWarehouse)
+  .get('/warehouse/:id', warehouseController.getWarehouse)
   .post('/warehouse', warehouseController.addWarehouse)
   .post('/warehouse/part', warehouseController.addPartToWarehouse)
   

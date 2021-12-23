@@ -4,9 +4,9 @@ const partController = {};
 
 
 partController.getPartByPartNum = async (req, res) => {
-    const companyID = req.body.companyID
-    const partNum = req.body.partNum
-    const part = await partService.getPartByPartNum(companyID,partNum);
+    const companyID = parseInt(req.params.companyID,10)
+    const partID = parseInt(req.params.partID,10)
+    const part = await partService.getPartByPartID(companyID,partID);
     res.status(200).json({
         part})
 };

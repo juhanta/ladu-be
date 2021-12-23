@@ -39,8 +39,8 @@ stockController.getStockByPart = async (req, res) => {
 };
 
 stockController.getStockWithAllLots = async (req, res) => {
-    const companyID = req.body.companyID
-    const partID = req.params.partID
+    const companyID = parseInt(req.params.companyID,10)
+    const partID = parseInt(req.params.partID,10)
     if (!companyID){
         res.status(400).json({
             error: 'Company ID puudu'

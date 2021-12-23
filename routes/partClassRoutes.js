@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .get('/partclass', partClassController.getPartClass)
+  .get('/partclass/:id', partClassController.getPartClass)
   .post('/partclass', partClassController.addPartClass)
   
 
