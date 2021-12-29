@@ -414,4 +414,43 @@ To users that have notifications set up for that company.
 * **Error Response:**
   
    
+
+----
+**PartLot**
+----
+  Add part lot to Company
+* **URL**
+  /partlot/
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+    `partID=[string]`
+    `lotNum=[string]`
+    `purchased=[date yyyy-mm-dd]`
+    `bestBeforeDate=[date yyyy-mm-dd]`
     
+* **Success Response:**
+  {
+    "addLot": [
+        {
+            "ID": 9,
+            "lotNum": "test2",
+            "companyID": 1,
+            "purchased": "2021-12-27T22:00:00.000Z",
+            "bestBeforeDt": "2021-12-28T22:00:00.000Z",
+            "deleted": 0,
+            "emailSent": 0,
+            "partID": 61
+        }
+    ]
+}
+  * **Code:** 200 <br />
+    **Content:** 
+
+* **Error Response:**
+
+----

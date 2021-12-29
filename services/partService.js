@@ -17,7 +17,9 @@ partService.getPartByPartNum =  async (companyID,partNum) => {
 
   partService.getPartByPartID =  async (companyID,partID) => {
     const part = await db.query("SELECT * FROM part WHERE companyID = ? AND ID = ? AND deleted = 0", [companyID, partID])
+    console.log(part)
     return part;
+    
     
   };
 
@@ -37,6 +39,34 @@ partService.getPartID = async (companyID, partNum) =>{
     const partID = await db.query("SELECT ID FROM part WHERE partNum = ? AND companyID = ? ", [partNum, companyID] )
     
     return partID[0].ID;
+  };
+
+
+partService.addPartToWarehouse =  async (partToWhse) => {
+    const part = await db.query("INSERT INTO partwhse SET ? ", [partToWhse])
+    const addedPart = await db.query("SELECT * FROM partwhse WHERE id = LAST_INSERT_ID();")
+    return addedPart;
+    
+  };
+
+partService.addLotToPart =  async (partLot) => {
+    const part = await db.query("INSERT INTO partwhse SET ? ", [partToWhse])
+    const addedPart = await db.query("SELECT * FROM partwhse WHERE id = LAST_INSERT_ID();")
+    return addedPart;
+    
+  };
+
+  
+partService.addLot =  async (newLot) => {
+  const part = await db.query("INSERT INTO partLot SET ? ", [newLot])
+  const addedLot = await db.query("SELECT * FROM partlot WHERE id = LAST_INSERT_ID();")
+  return addedLot;
+};
+
+  partService.getLotsByPart =  async (companyID,partID) => {
+    const part = await db.query("SELECT * FROM partlot WHERE CompanyID = ? and partID = ? AND deleted = 0", [companyID, partID])
+    return part;
+  
   };
 
 module.exports = partService;

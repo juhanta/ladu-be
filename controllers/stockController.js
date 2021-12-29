@@ -13,9 +13,9 @@ stockController.getStockByCompany = async (req, res) => {
 
 
 stockController.getStockByPart = async (req, res) => {
-    const companyID = req.body.companyID
-    const partID = req.body.partID
-    const warehouseID = req.body.warehouseID
+    const companyID = parseInt(req.params.companyID,10)
+    const partID = parseInt(req.params.partID,10)
+    const warehouseID = parseInt(req.params.warehouseID,10)
     if (!companyID){
         res.status(400).json({
             error: 'Company ID puudu'
@@ -62,12 +62,12 @@ stockController.getStockWithAllLots = async (req, res) => {
 stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
-    const partID = req.body.partNum
+    const partID = req.body.partID
     let lotID = req.body.lotID
     const qty = req.body.qty
     
     console.log(partID)
-    const lotRequired = await partService.getPartByPartNum(companyID,partNum)
+    const lotRequired = await partService.getPartByPartID(companyID,partID)
     if (lotRequired[0].lotTracked === 1 && !lotID) {
         res.status(400).json({
             error: 'Partii on antud tootel nõutud.'

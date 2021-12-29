@@ -11,5 +11,9 @@ router
   .post('/part', partController.addPart)
   .patch('/part/:partID', partController.changePart)
   .get('/part/:id',partController.getPartsByCompany)
+  .post('/part/warehouse', partController.addParToWarehouse)
+  .delete('/part/warehouse', partController.removePartFromWarehouse)
+  .get('/partlot/:companyID/:partID',partController.getLotsByPart)
+  .post('/partlot',partController.addLot)
 
 module.exports = router;
