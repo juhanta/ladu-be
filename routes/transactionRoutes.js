@@ -8,8 +8,9 @@ router
   
  
   .post('/transaction', transactionController.newTransaction)
-  .get('/transactiontype', transactionController.getTransactionType)
-  .get('/transaction', transactionController.getCompanyTransactions)
+  .get('/transactiontype/:companyID', transactionController.getTransactionType)
+  .get('/transaction/:companyID', transactionController.getCompanyTransactions)
+  .get('/transaction/:companyID/:partID', transactionController.getPartTransactions)
   
 
 module.exports = router;

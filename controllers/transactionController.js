@@ -70,7 +70,7 @@ transactionController.newTransaction = async (req, res) => {
 
 
 transactionController.getTransactionType = async (req, res) => {
-    const companyID = req.body.companyID
+    const companyID = parseInt(req.params.companyID, 10)
     const transaction = await transactionService.getTransactionType(companyID);
     res.status(200).json({
         transaction})
@@ -78,11 +78,21 @@ transactionController.getTransactionType = async (req, res) => {
 
 
 transactionController.getCompanyTransactions = async (req, res) => {
-    const companyID = req.body.companyID
+    const companyID = parseInt(req.params.companyID, 10)
     const transactions = await transactionService.getCompanyTransactions(companyID);
     res.status(200).json({
         transactions})
 };
+
+transactionController.getPartTransactions = async (req, res) => {
+    const companyID = parseInt(req.params.companyID, 10)
+    const partID = parseInt(req.params.partID, 10)
+    const transactions = await transactionService.getPartTransactions(companyID,partID);
+    res.status(200).json({
+        transactions})
+};
+
+
 
 
 

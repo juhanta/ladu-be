@@ -91,4 +91,37 @@ partController.changePart = async (req, res) => {
 };
 
 
+partController.addParToWarehouse = async (req, res) => {
+    const partID= req.body.partID
+    const warehouseID = req.body.warehouseID
+    const companyID = req.body.companyID
+   
+    if (partID && warehouseID) {
+        const checkForPart = await partService.getPartByPartID(companyID,partID)
+        if(checkForPart.length === 0){
+            res.status(400).json({
+                error: 'Error. Sellist toodet pole'
+            })
+        }
+        else{
+            const changedPart = {
+            partNum: partNum,
+            description: description,
+            companyID: companyID,
+            classID: classID,
+            lotTracked: lotTracked,
+            reminder: reminder
+            }
+            const changePart = await partService.addPartToWarehouse(partID,warehouseID);
+            res.status(200).json({
+                status: 'Muudetud'})
+            }
+    }else{
+        res.status(400).json({
+            error: 'Kõik väljad on kohustuslikud!'
+        })
+    }
+    
+};
+
 module.exports = partController;
