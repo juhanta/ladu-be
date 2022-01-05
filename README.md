@@ -186,7 +186,7 @@ To users that have notifications set up for that company.
 
     `companyID=[integer]`
      
-    `partNum=[integer]`
+    `partID=[integer]`
 
     `warehouseID=[integer]`
 
