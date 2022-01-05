@@ -351,10 +351,10 @@ To users that have notifications set up for that company.
   `GET`
 *  **URL Params**
    **Required:**
-
-    None
+  `companyID=[id]`
+   
 * **Data Params**
-    `companyID=[id]`
+     None
     
 * **Success Response:**
    **Code:** 200 <br />
