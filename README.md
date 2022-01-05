@@ -380,15 +380,16 @@ To users that have notifications set up for that company.
 ----
   Get all transaction types in company
 * **URL**
-  /transaction
+  /transactiontype
 * **Method:**
   `GET`
 *  **URL Params**
    **Required:**
+   `companyID=[id]`
 
-    None
+    
 * **Data Params**
-    `companyID=[id]`
+    None
     
 * **Success Response:**
    **Code:** 200 <br />

@@ -18,54 +18,56 @@ transactionController.newTransaction = async (req, res) => {
         res.status(400).json({
             error: 'Vigane kogus!'
         })
-    }
-    const lotRequired = await partService.getPartByPartID(companyID,partID)
-    if (lotRequired[0].lotTracked === 1 && !lotID) {
-        res.status(400).json({
-            error: 'Partii on antud tootel nõutud.'
-        })
-    }
-    if(lotRequired[0].lotTracked === 0){
-        lotID = null
-    }
-    const isStock = await stockService.getStockByPartLot(companyID, partID, warehouseID,lotID)
-    if (isStock.length > 0){
-    if (isStock[0].qty >= qty){
-        if(companyID && warehouseID && partID && qty && userID && transactionID){
-            const newTransaction = {
-                partID : partID,
-                companyID: companyID,
-                warehouseID: warehouseID,
-                lotID: lotID,
-                qty: qty,
-                comment : comment,
-                userID : userID,
-                transactionID : transactionID
+    }else{
+        const lotRequired = await partService.getPartByPartID(companyID,partID)
+        if (lotRequired[0].lotTracked === 1 && !lotID) {
+            res.status(400).json({
+                error: 'Partii on antud tootel nõutud.'
+            })
+        }
+        if(lotRequired[0].lotTracked === 0){
+            lotID = null
+        }
+        const isStock = await stockService.getStockByPartLot(companyID, partID, warehouseID,lotID)
+        if (isStock.length > 0){
+        if (isStock[0].qty >= qty){
+            if(companyID && warehouseID && partID && qty && userID && transactionID){
+                const newTransaction = {
+                    partID : partID,
+                    companyID: companyID,
+                    warehouseID: warehouseID,
+                    lotID: lotID,
+                    qty: qty,
+                    comment : comment,
+                    userID : userID,
+                    transactionID : transactionID
+                }
+        
+                
+                const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
+                
+                res.status(200).json({
+                    addTransaction})
+                }else{
+                    res.status(400).json({
+                        error: 'Kõik väljad peavad olema täidetud'
+                    })
+                }
             }
-    
-            
-            const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
-            
-            res.status(200).json({
-                addTransaction})
-            }else{
-                res.status(400).json({
-                    error: 'Kõik väljad peavad olema täidetud'
-                })
-            }
+        
+        else{
+            res.status(400).json({
+                error: 'Puudub piisav laoseis'
+            })
+        }
+        }else{
+            res.status(400).json({
+                error: 'Puudub laost'
+            })
         }
     
-    else{
-        res.status(400).json({
-            error: 'Puudub piisav laoseis'
-        })
     }
-    }else{
-        res.status(400).json({
-            error: 'Puudub laost'
-        })
-    }
-
+   
 };
 
 
