@@ -58,7 +58,7 @@ partService.addLotToPart =  async (partLot) => {
 
   
 partService.addLot =  async (newLot) => {
-  const part = await db.query("INSERT INTO partLot SET ? ", [newLot])
+  const part = await db.query("INSERT INTO partlot SET ? ", [newLot])
   const addedLot = await db.query("SELECT * FROM partlot WHERE id = LAST_INSERT_ID();")
   return addedLot;
 };

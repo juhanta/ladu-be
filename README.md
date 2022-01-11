@@ -455,3 +455,38 @@ To users that have notifications set up for that company.
 * **Error Response:**
 
 ----
+----
+**PartLot**
+----
+  Get part lots 
+* **URL**
+  /partlot/:companyID/:partID
+* **Method:**
+  `get`
+*  **URL Params**
+   **Required:**
+    
+* **Data Params**
+    
+    
+* **Success Response:**
+{
+    "part": [
+        {
+            "ID": 8,
+            "LotNum": "3311",
+            "CompanyID": 1,
+            "Purchased": "2022-01-10T00:00:00.000Z",
+            "BestBeforeDt": "2022-01-30T00:00:00.000Z",
+            "deleted": 0,
+            "emailSent": 0,
+            "partID": 62
+        }
+    ]
+}
+  * **Code:** 200 <br />
+    **Content:** 
+
+* **Error Response:**
+
+----

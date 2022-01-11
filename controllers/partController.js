@@ -173,7 +173,7 @@ partController.addLot = async (req, res) => {
     const lotNum = req.body.lotNum
     const companyID = req.body.companyID
     const purchased = req.body.purchased
-    const bestBeforeDt = req.body.bestBeforeDt
+    const bestBeforeDt = req.body.bestBeforeDate
    
     if (partID && lotNum && companyID && purchased && bestBeforeDt) {
     
