@@ -35,7 +35,8 @@ partController.addPart = async (req, res) => {
     const classID = req.body.classID
     const lotTracked = req.body.lotTracked
     const reminder = req.body.reminder
-    if (partNum && description && companyID && classID && lotTracked && reminder) {
+    const minQty = req.body.minQty
+    if (partNum && description && companyID && classID && lotTracked && reminder && minQty) {
         const checkForPart = await partService.getPartByPartNum(companyID,partNum)
         if(checkForPart.length){
             res.status(400).json({
@@ -49,7 +50,8 @@ partController.addPart = async (req, res) => {
             companyID: companyID,
             classID: classID,
             lotTracked: lotTracked,
-            reminder: reminder
+            reminder: reminder,
+            minQty: minQty
             }
             const addPart = await partService.addPart(newPart);
             res.status(200).json({
@@ -72,7 +74,8 @@ partController.changePart = async (req, res) => {
     const classID = req.body.classID
     const lotTracked = req.body.lotTracked
     const reminder = req.body.reminder
-    if (partID && partNum && description && companyID && classID && lotTracked && reminder) {
+    const minQty = req.body.minQty
+    if (partID && partNum && description && companyID && classID && lotTracked && reminder && minQty) {
         const checkForPart = await partService.getPartByPartID(companyID,partID)
         if(checkForPart.length === 0){
             res.status(400).json({
@@ -86,7 +89,8 @@ partController.changePart = async (req, res) => {
             companyID: companyID,
             classID: classID,
             lotTracked: lotTracked,
-            reminder: reminder
+            reminder: reminder,
+            minQty: minQty
             }
             const changePart = await partService.changePart(partID,changedPart);
             res.status(200).json({

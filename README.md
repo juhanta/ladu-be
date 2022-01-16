@@ -250,6 +250,7 @@ To users that have notifications set up for that company.
     `classID=[id]`
     `lotTracked=[boolean]`
     `reminder=[int]`
+    `minQty=[int]`
 * **Success Response:**
 
   * **Code:** 200 <br />
@@ -276,6 +277,7 @@ To users that have notifications set up for that company.
     `classID=[id]`
     `lotTracked=[boolean]`
     `reminder=[int]`
+    `minQty=[int]`
 * **Success Response:**
 
   * **Code:** 200 <br />
