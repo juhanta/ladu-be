@@ -492,3 +492,24 @@ To users that have notifications set up for that company.
 * **Error Response:**
 
 ----
+
+**Warehouse**
+----
+  Add Warehouse to company
+* **URL**
+  /warehouse/
+* **Method:**
+  `POST`
+*  **URL Params**
+   **Required:**
+    None
+* **Data Params**
+    `companyId=[integer]`
+    `warehouseCode=[string]`
+    
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+
+* **Error Response:**
