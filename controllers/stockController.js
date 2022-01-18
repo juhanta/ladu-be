@@ -63,10 +63,21 @@ stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
     const partID = req.body.partID
-    let lotID = req.body.lotID
+    let lotID = parseInt(req.body.lotID, 10)
+    console.log(typeof(lotID))
     const qty = req.body.qty
+    const lotInStock = await stockService.getStockWithAllLots(companyID,partID)
     
-    console.log(partID)
+    var hasLot;
+    var lotNum;
+    for(i=0; i< lotInStock.length; i++){
+        if (lotInStock[i].lotID === lotID){
+            hasLot = true;
+            lotNum = i
+            console.log(lotInStock[i].lotID)
+        }
+    }
+    
     const lotRequired = await partService.getPartByPartID(companyID,partID)
     if (lotRequired[0].lotTracked === 1 && !lotID) {
         res.status(400).json({
@@ -76,18 +87,25 @@ stockController.addStockToCompany = async (req, res) => {
     if(lotRequired[0].lotTracked === 0){
         lotID = null
     }
-    if(companyID && warehouseID && partNum && qty){
-        const newStock = {
-            partID : partID,
-            companyID: companyID,
-            warehouseID: warehouseID,
-            lotID: lotID,
-            qty: qty
-        }
-        const addStock = await stockService.addStock(newStock);
-            res.status(200).json({
-                addStock})
+    if (!hasLot){
+        if(companyID && warehouseID && qty){
+            const newStock = {
+                partID : partID,
+                companyID: companyID,
+                warehouseID: warehouseID,
+                lotID: lotID,
+                qty: qty
             }
+            const addStock = await stockService.addStock(newStock);
+                res.status(200).json({
+                    addStock})
+        }
+    }else{
+        const addStocktoStock = await stockService.addStocktoStock(companyID, warehouseID, lotInStock[lotNum], qty);
+        res.status(200).json({
+            addStocktoStock})
+    } 
+    
 
 };
 

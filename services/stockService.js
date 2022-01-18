@@ -10,7 +10,7 @@ stockService.getStockByCompany =  async (company) => {
 
 
 stockService.getStockByPart =  async (companyID, partID, warehouseID) => {
-    const stock = await db.query('SELECT part.ID as partID, stock.companyID, warehouse.warehouseCode, part.partNum, partlot.lotnum, partlot.BestBeforeDt, stock.qty FROM stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ? AND stock.warehouseID = ?', [companyID, partID, warehouseID])
+    const stock = await db.query('SELECT part.ID as partID, stock.companyID, warehouse.warehouseCode, part.partNum, partlot.ID AS lotID, partlot.lotnum, partlot.BestBeforeDt, stock.qty FROM stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ? AND stock.warehouseID = ?', [companyID, partID, warehouseID])
 
     return stock;
   };
@@ -22,8 +22,8 @@ return stock
 }
 
   stockService.getStockWithAllLots =  async (companyID, partID) => {
-    const stock = await db.query('SELECT part.ID as partID ,stock.companyID, warehouse.warehouseCode, part.partNum, partlot.lotnum, partlot.BestBeforeDt, stock.qty FROM stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ?', [companyID, partID])
-
+    const stock = await db.query('SELECT part.ID as partID ,stock.companyID, warehouse.warehouseCode, part.partNum, partlot.lotnum, partlot.ID as lotID, partlot.BestBeforeDt, stock.qty FROM stock LEFT JOIN part on part.ID = stock.partID left join partlot on partlot.ID = stock.lotID LEFT JOIN warehouse on warehouse.ID = stock.warehouseID WHERE stock.companyID = ? AND stock.partID = ?', [companyID, partID])
+    console.log(stock)
     return stock;
   };
 
@@ -41,11 +41,15 @@ stockService.getStockByPartLot =  async (companyID, partID, warehouseID,lotID) =
   };
 
 stockService.addStock =  async (newStock) => {
-  console.log(newStock)
+  
     const stock = await db.query("INSERT INTO stock SET ? ", [newStock])
     return stock;
   };
 
+stockService.addStocktoStock = async(companyID, warehouseID,lotInStock,qty) => {
+  console.log("stocktostock")
 
+  const stock = await db.query("UPDATE stock SET qty = qty + ? WHERE lotID = ? AND companyID = ? AND warehouseID = ?", [qty, lotInStock.lotID,companyID,warehouseID])
 
+}
 module.exports = stockService;

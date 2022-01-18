@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .get('/stock/:id',isLoggedIn, stockController.getStockByCompany)
+  .get('/stock/:id', stockController.getStockByCompany)
   .get('/stock/:companyID/:warehouseID/:partID', stockController.getStockByPart)
   .post('/stock', stockController.addStockToCompany)
   .get('/stock/:companyID/:partID', stockController.getStockWithAllLots)
