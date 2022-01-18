@@ -24,6 +24,12 @@ partClassController.addPartClass = async (req, res) => {
     const companyID = req.body.companyID
     const description = req.body.description
     console.log(companyID, description)
+    const partClassExists = await partClassService.ifNameExists(companyID, description);
+    if (partClassExists.length > 0) {
+        res.status(400).json({
+            error: 'Sellise nimega klass on juba olemas!'
+    })
+    }else{
     if(companyID && description) {
         const partClass = await partClassService.addPartClass(companyID,description);
         res.status(200).json({
@@ -34,6 +40,7 @@ partClassController.addPartClass = async (req, res) => {
             error: 'Kõik väljad on kohustuslikud!'
         })
     }
+}
     
 };
 

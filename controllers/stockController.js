@@ -1,6 +1,6 @@
 const  stockService   = require('../services/stockService');
 const  partService   = require('../services/partService');
-
+const transactionService = require('../services/transactionService')
 const stockController = {};
 
 
@@ -63,18 +63,33 @@ stockController.addStockToCompany = async (req, res) => {
     const companyID = req.body.companyID
     const warehouseID = req.body.warehouseID
     const partID = req.body.partID
+    const userID = parseInt(req.userId, 10)
     let lotID = parseInt(req.body.lotID, 10)
-    console.log(typeof(lotID))
     const qty = req.body.qty
     const lotInStock = await stockService.getStockWithAllLots(companyID,partID)
     
+    // transaction kande lisamine toote juurdevõtmisel
+    const newTransaction = {
+        partID : partID,
+        companyID: companyID,
+        warehouseID: warehouseID,
+        lotID: lotID,
+        qty: qty,
+        comment : "Laokanne",
+        userID : userID,
+        transactionID : 3
+    }
+    const isStock = [ID = -1]
+        
+
+
     var hasLot;
     var lotNum;
     for(i=0; i< lotInStock.length; i++){
         if (lotInStock[i].lotID === lotID){
             hasLot = true;
             lotNum = i
-            console.log(lotInStock[i].lotID)
+            
         }
     }
     
@@ -97,14 +112,18 @@ stockController.addStockToCompany = async (req, res) => {
                 qty: qty
             }
             const addStock = await stockService.addStock(newStock);
+            const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
                 res.status(200).json({
                     addStock})
         }
     }else{
         const addStocktoStock = await stockService.addStocktoStock(companyID, warehouseID, lotInStock[lotNum], qty);
+        const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
         res.status(200).json({
             addStocktoStock})
     } 
+    
+
     
 
 };

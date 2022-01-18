@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .post('/transaction', transactionController.newTransaction)
+  .post('/transaction', isLoggedIn, transactionController.newTransaction)
   .get('/transactiontype/:companyID', transactionController.getTransactionType)
   .get('/transaction/:companyID', transactionController.getCompanyTransactions)
   .get('/transaction/:companyID/:partID', transactionController.getPartTransactions)

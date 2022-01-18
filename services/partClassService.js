@@ -14,5 +14,10 @@ partClassService.addPartClass =  async (companyID,description) => {
     return true;
     
   };
+partClassService.ifNameExists = async (companyID,description) => {
+    const partClass = await db.query("SELECT * FROM partclass WHERE companyID = ? AND description = ?", [companyID,description])
+    return partClass;
+
+}
 
 module.exports = partClassService;
