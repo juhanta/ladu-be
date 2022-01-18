@@ -79,7 +79,7 @@ stockController.addStockToCompany = async (req, res) => {
         userID : userID,
         transactionID : 3
     }
-    const isStock = [ID = -1]
+    
         
 
 
@@ -112,13 +112,13 @@ stockController.addStockToCompany = async (req, res) => {
                 qty: qty
             }
             const addStock = await stockService.addStock(newStock);
-            const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
+            const addTransaction = await transactionService.addPosTransaction(newTransaction);
                 res.status(200).json({
                     addStock})
         }
     }else{
         const addStocktoStock = await stockService.addStocktoStock(companyID, warehouseID, lotInStock[lotNum], qty);
-        const addTransaction = await transactionService.addTransaction(newTransaction,isStock);
+        const addTransaction = await transactionService.addPosTransaction(newTransaction);
         res.status(200).json({
             addStocktoStock})
     } 

@@ -6,7 +6,23 @@ transactionService.addTransaction =  async (newTransaction,isStock) => {
     const stock = await db.query("INSERT INTO parttrans SET ? ", [newTransaction])
     console.log(isStock[0].ID)
     const removeStock = await db.query("UPDATE stock SET qty = qty - ? WHERE ID = ? ", [newTransaction.qty, isStock[0].ID])
-    console.log(removeStock)
+    const deleteLot = await db.query("SELECT * FROM stock WHERE ID = ? ",[isStock[0].ID])
+    if(deleteLot[0].qty === 0){
+       const deletePartLot = await db.query("UPDATE partlot SET deleted = 1 WHERE ID = ?", [deleteLot[0].lotID])
+       const deleteStock = await db.query("DELETE from stock where ID = ? ", [isStock[0].ID])
+    }
+    return true;
+  };
+
+  transactionService.addPosTransaction =  async (newTransaction) => {
+    const stock = await db.query("INSERT INTO parttrans SET ? ", [newTransaction])
+    console.log(isStock[0].ID)
+    //const removeStock = await db.query("UPDATE stock SET qty = qty - ? WHERE ID = ? ", [newTransaction.qty, isStock[0].ID])
+    //const deleteLot = await db.query("SELECT * FROM stock WHERE ID = ? ",[isStock[0].ID])
+    //if(deleteLot[0].qty === 0){
+    //   const deletePartLot = await db.query("UPDATE partlot SET deleted = 1 WHERE ID = ?", [deleteLot[0].lotID])
+    //   const deleteStock = await db.query("DELETE from stock where ID = ? ", [isStock[0].ID])
+   // }
     return true;
   };
 
