@@ -28,8 +28,8 @@ cron.schedule('0 00 08 * * *', async () => {
                 from: emailUser,
                 to: data[i].email,
                 subject: "Aeguv kaup",
-                text: "Toode: " + data[i].PartNum + " Laos : " + data[i].WareHouseCode + "Hakkab pahaks minema" ,
-                html: "<p>Toode:" + data[i].PartNum + " Laos :" + data[i].WareHouseCode + "Hakkab pahaks minema</p>"
+                text: "Toode: " + data[i].PartNum + " partiiga : " + data[i].LotNum + " Laos : " + data[i].WareHouseCode + "Hakkab pahaks minema" ,
+                html: "<p>Toode: " + data[i].PartNum + " partiiga : " + data[i].LotNum + " Laos : " + data[i].WareHouseCode + " Hakkab pahaks minema</p>"
               };
             transporter.sendMail(message, function (err, info) {
                 if(err) 
