@@ -7,7 +7,7 @@ const router = express.Router();
 router
   
  
-  .get('/company/:id', companyController.getCompanyForUser)
+  .get('/company/', isloggedIn, companyController.getCompanyForUser)
   
   
 

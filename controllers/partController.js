@@ -67,7 +67,7 @@ partController.addPart = async (req, res) => {
 
 partController.changePart = async (req, res) => {
     const partNum = req.body.partNum
-    const partID = req.params.partID
+    const partID = parseInt(req.params.partID, 10)
     console.log(partNum)
     const description = req.body.description
     const companyID = req.body.companyID
