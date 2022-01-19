@@ -68,13 +68,13 @@ partController.addPart = async (req, res) => {
 partController.changePart = async (req, res) => {
     const partNum = req.body.partNum
     const partID = parseInt(req.params.partID, 10)
-    console.log(partNum)
     const description = req.body.description
     const companyID = req.body.companyID
     const classID = req.body.classID
     const lotTracked = req.body.lotTracked
     const reminder = req.body.reminder
     const minQty = req.body.minQty
+    console.log(partNum,partID,description,companyID,classID,lotTracked,reminder,minQty)
     if (partID && partNum && description && companyID && classID && lotTracked && reminder && minQty) {
         const checkForPart = await partService.getPartByPartID(companyID,partID)
         if(checkForPart.length === 0){
