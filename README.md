@@ -32,14 +32,14 @@ To users that have notifications set up for that company.
 ----
   Returns json data about active part in specific company
 * **URL**
-  /partclass/
+  /partclass/companyID
 * **Method:**
   `GET`
 *  **URL Params**
    **Required:**
     None
 * **Data Params**
-    `companyId=[integer]`
+    
  
 * **Success Response:**
 
@@ -112,16 +112,14 @@ To users that have notifications set up for that company.
 ----
   Returns json data with part lot info in current company/warehouse
 * **URL**
-  /stock
+  /stock/companyID/warehouseID/partID
 * **Method:**
   `GET`
 *  **URL Params**
    **Required:**
 
 * **Data Params**
-    `companyID=[integer]`
-    `partID=[integer]`
-    `warehouseID=[integer]`
+   
   None
 * **Success Response:**
 
@@ -206,15 +204,14 @@ To users that have notifications set up for that company.
 ----
   Returns json data about active part in specific company
 * **URL**
-  /part/
+  /part/:companyID/:partID
 * **Method:**
   `GET`
 *  **URL Params**
    **Required:**
     None
 * **Data Params**
-    `companyId=[integer]`
-    `partNum=[string]`
+   
  
 * **Success Response:**
 
@@ -270,9 +267,9 @@ To users that have notifications set up for that company.
    **Required:**
     None
 * **Data Params**
-    `partID=[integer]`
+  
     `companyId=[integer]`
-    `partID=[string]`
+    `partNum=[string]`
     `description=[string]`
     `classID=[id]`
     `lotTracked=[boolean]`
@@ -348,7 +345,7 @@ To users that have notifications set up for that company.
 ----
   Get all history transactions in company 
 * **URL**
-  /transaction
+  /transaction/companyID
 * **Method:**
   `GET`
 *  **URL Params**

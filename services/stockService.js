@@ -4,7 +4,7 @@ const stockService = {};
 
 
 stockService.getStockByCompany =  async (company) => {
-    const stock = await db.query('SELECT partwhse.companyID,partwhse.partID, part.partNum, part.description as partDescription, partclass.Description AS partClass,  warehouse.WareHouseCode, COALESCE(SUM(stock.qty),0) AS qty, CASE WHEN COALESCE(SUM(stock.qty),0) < part.minQty THEN 1 ELSE 0 END AS notification from partwhse LEFT JOIN part on part.ID = partwhse.partID left JOIN stock on stock.partID = partwhse.partID  and stock.warehouseID = partwhse.warehouseID left join warehouse on partwhse.warehouseID = warehouse.id left join partclass on partclass.ID = part.classID WHERE partwhse.companyID = ? group by warehousecode,partID', [company])
+    const stock = await db.query('SELECT partwhse.companyID,partwhse.partID, part.partNum, part.description as partDescription, partclass.Description AS partClass, warehouse.ID as whID,  warehouse.WareHouseCode, COALESCE(SUM(stock.qty),0) AS qty, CASE WHEN COALESCE(SUM(stock.qty),0) < part.minQty THEN 1 ELSE 0 END AS notification from partwhse LEFT JOIN part on part.ID = partwhse.partID left JOIN stock on stock.partID = partwhse.partID  and stock.warehouseID = partwhse.warehouseID left join warehouse on partwhse.warehouseID = warehouse.id left join partclass on partclass.ID = part.classID WHERE partwhse.companyID = ? group by warehousecode,partID', [company])
     return stock;
   };
 
