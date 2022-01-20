@@ -44,7 +44,7 @@ cron.schedule('0 00 08 * * *', async () => {
     })
 
 emailService.emailToSend = async () => {
-    const email = await db.query("SELECT stock.ID, company.Name AS 'Company Name', warehouse.WareHouseCode, part.PartNum, part.Description,stock.Qty,  partlot.LotNum, partlot.BestBeforeDt , part.reminder, usercompany.UserID, DATE_SUB(partlot.BestBeforeDt, INTERVAL 12 DAY ) as EmailDate, User.email FROM whse.stock LEFT JOIN whse.company on whse.Company.ID = stock.CompanyID LEFT JOIN whse.warehouse on whse.stock.WareHouseID = whse.warehouse.ID LEFT JOIN whse.part on whse.stock.partID = whse.part.ID LEFT JOIN whse.partlot on whse.stock.LotID = whse.partlot.ID LEFT join whse.usercompany on whse.usercompany.companyID = stock.companyID AND whse.usercompany.notifications = TRUE LEFT JOIN whse.user on usercompany.UserID = user.ID WHERE DATE_SUB(partlot.BestBeforeDt, INTERVAL 12 DAY ) <= curdate() AND partlot.emailSent = 0")
+    const email = await db.query("SELECT stock.ID, company.Name AS 'Company Name', warehouse.WareHouseCode, part.PartNum, part.Description,stock.Qty, partlot.LotNum, partlot.BestBeforeDt , part.reminder, usercompany.UserID, DATE_SUB(partlot.BestBeforeDt, INTERVAL 12 DAY ) as EmailDate, user.email FROM stock LEFT JOIN company on company.ID = stock.companyID LEFT JOIN warehouse on stock.WareHouseID = warehouse.ID LEFT JOIN part on stock.partID = part.ID LEFT JOIN partlot on stock.LotID = partlot.ID LEFT join usercompany on usercompany.companyID = stock.companyID AND usercompany.notifications = TRUE LEFT JOIN user on usercompany.UserID = user.ID WHERE DATE_SUB(partlot.BestBeforeDt, INTERVAL 12 DAY ) <= curdate() AND partlot.emailSent = 0")
     
     return email
 }
